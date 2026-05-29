@@ -1,69 +1,52 @@
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
+  CardAction,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+import { cards } from "@/config/cards";
 
 import { Badge } from "@/components/ui/badge";
 
 import { TrendingUp, TrendingDown } from "lucide-react";
 
 const SectionCards = () => {
-  const cards = [
-    {
-      title: "Total Revenue",
-      value: "$1,250.00",
-      trend: "up",
-      change: "+12.5%",
-      sub: "Trending up this month",
-    },
-    {
-      title: "New Customers",
-      value: "1,234",
-      trend: "down",
-      change: "-20%",
-      sub: "Down 20 this period",
-    },
-    {
-      title: "Active Accounts",
-      value: "45,678",
-      trend: "up",
-      change: "+12.5%",
-      sub: "Strong user retention",
-    },
-    {
-      title: "Growth Rate",
-      value: "4.5%",
-      trend: "up",
-      change: "+4.5%",
-      sub: "Steady performance",
-    },
-  ];
-
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 px-4">
+    <div className="grid grid-cols-1 gap-4 px-4 @xl/main:grid-cols-2 @5xl/main:grid-cols-4 lg:px-6 *:data-[slot=card]:shadow-xs *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:from-primary/5 *:data-[slot=card]:to-card">
       {cards.map((card) => (
-        <Card>
-          <CardHeader key={card.title}>
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-              {card.title}
-              <Badge variant="outline">{card.change}</Badge>
+        <Card className="@container/card">
+          <CardHeader>
+            <CardDescription>{card.title}</CardDescription>
+            <CardTitle className="text-2xl font-semibold tabular-nums @[250px]:text-3xl">
+              {card.value}
             </CardTitle>
+            <CardAction>
+              <Badge variant="outline">
+                {card.trend === "up" ? (
+                  <TrendingUp size={16} />
+                ) : (
+                  <TrendingDown size={16} />
+                )}
+                {card.change}
+              </Badge>
+            </CardAction>
           </CardHeader>
-          <CardContent>
-            <p className="text-2xl font-bold">{card.value}</p>
-          </CardContent>
-          <CardFooter className="flex items-center gap-2 text-sm">
-            <span className="text-muted-foreground">{card.sub}</span>
-            <div>
-              {card.trend == "up" ? (
-                <TrendingUp size={16} />
-              ) : (
-                <TrendingDown size={16} />
-              )}
+          <CardFooter className="border-0 text-sm flex flex-col gap-2 items-start">
+            <div className="font-semibold flex items-center gap-2">
+              <div>{card.boldSub}</div>
+              <div>
+                {card.trend === "up" ? (
+                  <TrendingUp size={16} />
+                ) : (
+                  <TrendingDown size={16} />
+                )}
+              </div>
             </div>
+            <div className="text-muted-foreground ">{card.sub}</div>
           </CardFooter>
         </Card>
       ))}

@@ -12,7 +12,7 @@ function Dashboard() {
       <AppSidebar />
       <SidebarInset>
         <SiteHeader />
-        <main className="p-4">
+        <main className="p-4 @container/main">
           <SectionCards />
         </main>
       </SidebarInset>

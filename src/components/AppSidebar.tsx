@@ -3,20 +3,15 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupContent,
   SidebarHeader,
 } from "@/components/ui/sidebar";
+import { navMain } from "@/config/sidbar-menu";
 
 export function AppSidebar() {
   return (
-    <Sidebar variant="inset">
-      <SidebarHeader>
-        <span className="font-semibold px-2">Acme Inc</span>
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup />
-        <SidebarGroup />
-      </SidebarContent>
-      <SidebarFooter />
+    <Sidebar variant="inset" collapsible="icon">
+      <SidebarGroupContent></SidebarGroupContent>
     </Sidebar>
   );
 }
